@@ -1,0 +1,8 @@
+{
+  "expo": {
+    "name": "fyp-off",
+    "slug": "fyp-off",
+    "version": "1.0.0",
+    "assetBundlePatterns": ["**/*"]
+    }
+}
