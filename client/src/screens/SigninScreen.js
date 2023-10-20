@@ -20,14 +20,13 @@ const SignInPage = ({navigation}) => {
       userType: "customer"
     };
     if(!username){
-      setUsernameError("Email is required");
+      window.alert("Username is required");
       return;
     }
     if(!password){
-      setPassError("Password is required.");
+      window.alert("Password is required.");
       return;
     }
-
 
     try {
       const response = await axios.post("https://off-api.vercel.app/api/users/login", data);
@@ -41,15 +40,15 @@ const SignInPage = ({navigation}) => {
         if (error.response) {
           if (error.response.status === 401) {
             if (error.response.data.message === "Invalid login credentials") {
-              setError( error.response.data.message); 
+              window.alert( error.response.data.message); 
             } else if (error.response.data.message === "Account send for approval") {
-              setError( error.response.data.message);  
+              window.alert( error.response.data.message);  
             }else if (error.response.data.message === "You are not registered as a customer") {
-              setError( error.response.data.message);  
+              window.alert( error.response.data.message);  
             }
           }
         } else {
-          console.error('Error:', error.message);
+          window.alert('Error:', error.message);
         }
       };
   };

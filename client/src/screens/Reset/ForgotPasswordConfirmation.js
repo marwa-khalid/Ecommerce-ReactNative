@@ -36,7 +36,7 @@ const ForgotPasswordConfirmation = ({navigation, route}) => {
       })
       .catch((err)=>{
       console.error("Error:", err);
-      setMessage(response.data.message);
+      setMessage(err.data.message);
       alert(`Something went wrong! ${err}`)
       })
   };

@@ -1,280 +1,15 @@
-// import React, { useEffect, useState } from "react";
-// import {
-//   View,
-//   Text,
-//   TextInput,
-//   Image,
-//   FlatList,
-//   StyleSheet,
-//   TouchableOpacity,
-// } from "react-native";
-// import axios from "axios";
-// import AsyncStorage from "@react-native-async-storage/async-storage";
-// import { FontAwesome } from "@expo/vector-icons";
-// import { createDrawerNavigator } from "@react-navigation/drawer";
-// import { NavigationContainer } from "@react-navigation/native";
-// import { useDispatch } from "react-redux";
-// import { logout } from "../../features/UserSlice";
-
-// const Drawer = createDrawerNavigator();
-
-// const CustomerScreen = ({navigation}) => {
-//   // const [kitchens, setKitchens] = useState([]);
-//   const [searchQuery, setSearchQuery] = useState("");
-//   const dispatch = useDispatch();
-
-//   // useEffect(() => {
-//   //   fetchKitchens();
-//   //   // fetchProfilePicture();
-//   // }, []);
-
-//   const navigateToKitchenDetail = async (brandId, brand) => {
-//         const userId = await AsyncStorage.getItem("userId");
-//         const response = await axios.get(`https://off-api.vercel.app/api/users/${userId}`);
-//         // const customerName = response.data.username;
-//         console.log(userId)
-//         console.log(brand)
-//     navigation.navigate("BrandDetail",  brand );
-//   };
-
-
-//   // const fetchKitchens = async () => {
-//   //   try {
-//   //     const response = await axios.get("https://off-api.vercel.app/api/brands");
-//   //     setKitchens(response.data);
-//   //   } catch (error) {
-//   //     console.log("Error fetching kitchens:", error);
-//   //   }
-//   // };
-
-// //   const filteredKitchens = kitchens.filter((kitchen) =>
-// //   (kitchen.name ? kitchen.name.toString() : "").toLowerCase().includes((searchQuery ? searchQuery.toString() : "").toLowerCase())
-// // );
-
-//   const renderKitchenCard = ({ item }) => (
-//     <View style={styles.kitchenCard}>
-//       <TouchableOpacity onPress={() => navigateToKitchenDetail(item._id, item.store)}>
-//         <Image source={{ uri: item.image }} style={styles.kitchenImage} />
-//         <Text style={styles.kitchenName}>{item.name}</Text>
-//         <Text style={styles.kitchenCuisine}>Rating {item.rating}</Text>
-//         <Text style={styles.kitchenAddress}>{item.category}</Text>
-//       </TouchableOpacity>
-//     </View>
-//   );
-
-//   const Sidebar = () => {
-//     // const [customerName, setCustomerName] = useState("");
-  
-//     // useEffect(() => {
-//     //   fetchProfilePicture();
-//     // }, []);
-  
-//     // const fetchProfilePicture = async () => {
-//     //   try {
-//     //     const userId = await AsyncStorage.getItem("userId");
-//     //     const response = await axios.get(`https://off-api.vercel.app/api/users/${userId}`);
-//     //     const profilePicture = response.data.image;
-//     //     const customerName = response.data.username;
-//     //     setProfilePicture(profilePicture);
-//     //     setCustomerName(customerName);
-//     //   } catch (error) {
-//     //     console.log("Error fetching profile Picture:", error);
-//     //   }
-//     // };
-  
-//     // const navigateToEditProfile = async () => {
-//     //   const userId = await AsyncStorage.getItem("userId");
-//     //   navigation.navigate("EditProfile", { userId });
-//     // };
-  
-//     const navigateToWishlistScreen = () => {
-//       navigation.navigate("WishlistScreen");
-//     };
-  
-//     return (
-//       <View style={styles.sidebarContainer}>
-       
-        
-//         {/* <Image
-//           source={{ uri: profilePicture }}
-//           style={styles.profilePicture}
-//         /> */}
-//         <Text style={styles.customerName}>Marwa</Text>
-
-//         <TouchableOpacity
-//           style={styles.sidebarItem}
-//           // onPress={() => navigateToEditProfile()}
-//         >
-//           <Text>Edit Profile</Text>
-//         </TouchableOpacity>
-//         <TouchableOpacity
-//           style={styles.sidebarItem}
-//           onPress={() => navigateToWishlistScreen()}
-//         >
-//           <Text>Wishlist</Text>
-//         </TouchableOpacity>
-//         <TouchableOpacity
-//           style={styles.sidebarItem}
-//           onPress={() => navigation.navigate("CustomerOrder")}
-//         >
-//           <Text>Orders</Text>
-//         </TouchableOpacity>
-//         <TouchableOpacity
-//         style={styles.sidebarItem}
-//         onPress={() => navigation.navigate("CartScreen")}
-//       >
-//         <FontAwesome name="shopping-cart" size={20} color="#333" />
-//         <Text style={styles.sidebarItemText}>Cart</Text>
-//       </TouchableOpacity>
-//         <TouchableOpacity
-//           style={styles.sidebarItem}
-//           onPress={async () => {
-//             dispatch(logout());
-//             navigation.navigate("Signin")
-//             await AsyncStorage.clear();
-//           }}
-//         >
-//           <Text>Logout</Text>
-//         </TouchableOpacity>
-//       </View>
-//     );
-//   };
-  
-//   return (
-//       <Drawer.Navigator 
-//       drawerContent={Sidebar}>
-//         <Drawer.Screen name="Hello! Welcome to OFF!">
-//           {() => (
-//             <View style={styles.container}>
-
-//               <TextInput
-//                 style={styles.searchBar}
-//                 placeholder="Search"
-//                 placeholderTextColor="#888"
-//                 value={searchQuery}
-//                 onChangeText={setSearchQuery}
-//               />
-
-//               {/* <FlatList
-//                 data={filteredKitchens}
-//                 keyExtractor={(item) => item._id}
-//                 renderItem={renderKitchenCard}
-//                 contentContainerStyle={styles.kitchenList}
-//               /> */}
-//             </View>
-//           )}
-//         </Drawer.Screen>
-//       </Drawer.Navigator>
-//   );
-//             };
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     padding: 16,
-//     backgroundColor: "#f9f9f9",
-//   },
-//   header: {
-//     flexDirection: "row",
-//     alignItems: "center",
-//     marginBottom: 16,
-//     justifyContent: "space-between",
-//   },
-//   welcomeText: {
-//     fontSize: 18,
-//     fontWeight: "bold",
-//     color: "#333",
-//     textAlign: "center",
-//   },
-//   searchBar: {
-//     height: 40,
-//     borderWidth: 1,
-//     borderColor: "#ccc",
-//     borderRadius: 8,
-//     paddingHorizontal: 16,
-//     marginBottom: 16,
-//     backgroundColor: "#fff",
-//     color: "#333",
-//   },
-//   kitchenList: {
-//     paddingBottom: 16,
-//   },
-//   kitchenCard: {
-//     marginBottom: 16,
-//     borderRadius: 8,
-//     backgroundColor: "#fff",
-//     shadowColor: "#000",
-//     shadowOffset: { width: 0, height: 2 },
-//     shadowOpacity: 0.2,
-//     shadowRadius: 4,
-//     elevation: 3,
-//     padding: 16,
-//   },
-//   kitchenImage: {
-//     width: "100%",
-//     height: 160,
-//     borderRadius: 8,
-//     marginBottom: 8,
-//   },
-//   kitchenName: {
-//     fontSize: 18,
-//     fontWeight: "bold",
-//     marginBottom: 4,
-//     color: "#333",
-//   },
-//   kitchenCuisine: {
-//     fontSize: 16,
-//     color: "#666",
-//     marginBottom: 4,
-//   },
-//   kitchenAddress: {
-//     fontSize: 14,
-//     color: "#888",
-//   },
-//   profileContainer: {
-//     alignItems: "center",
-//     marginBottom: 16,
-//   },
-//   profilePicture: {
-//     width: 200,
-//     height: 200,
-//     borderRadius: 80,
-//     marginBottom: 8,
-//   },
-  
-//   sidebarContainer: {
-//     flex: 1,
-//     padding: 16,
-//     backgroundColor: "#fff",
-//   },
-//   sidebarItem: {
-//     flexDirection: "row",
-//     alignItems: "center",
-//     marginBottom: 16,
-//     paddingVertical: 8,
-//     paddingHorizontal: 12,
-//     borderRadius: 8,
-//     backgroundColor: "#f0f0f0",
-//   },
-//   sidebarItemText: {
-//     marginLeft: 8,
-//   },
-  
-// });
-
-// export default CustomerScreen;
-
 import React from 'react';
 import { View, Text, StyleSheet ,Image, TextInput, FlatList, TouchableOpacity} from 'react-native';
 import { useState,useEffect } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 import axios from 'axios';
-import Sidebar from '../SideBar';
+import Sidebar from '../CustomDrawerComponent';
 // import { createDrawerNavigator } from "@react-navigation/drawer";
 // import { NavigationContainer } from "@react-navigation/native";
 
 const CustomerScreen = ({navigation}) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -311,6 +46,10 @@ const CustomerScreen = ({navigation}) => {
       navigation.navigate("BrandDetail", image);
     }, 2000);
   }
+
+  const openDrawer = () => {
+    navigation.openDrawer();
+  };
   
 
   const renderProductCard = ({ item }) => (
@@ -325,7 +64,7 @@ const CustomerScreen = ({navigation}) => {
     <View style={styles.container}>
       {/* Top Row */}
       <View style={styles.topRow}>
-        <TouchableOpacity onPress={toggleSidebar}> 
+        <TouchableOpacity onPress={openDrawer}> 
           <FontAwesome name="bars" size={24} style={styles.icon} />
         </TouchableOpacity>
         {isSidebarOpen && <Sidebar />}
