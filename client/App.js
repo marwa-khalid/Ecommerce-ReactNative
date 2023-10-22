@@ -18,12 +18,11 @@ import ForgotPasswordForm from "./src/screens/Reset/ForgotPasswordForm";
 import ForgotPasswordConfirmation from "./src/screens/Reset/ForgotPasswordConfirmation";
 import WishlistScreen from './src/screens/Customer/WishlistScreen';
 import CustomSidebar from './src/screens/CustomSidebar';
-import OrdersScreen from './src/screens/Customer/OrdersScreen';
+import VerificationCode from './src/screens/Reset/VerificationCode';
 
 import { store } from "./src/store";
 import { Provider } from "react-redux";
 import './App.css';
-import CustomDrawerContent from './src/screens/CustomSidebar';
 
 const Stack = createStackNavigator();
 
@@ -34,7 +33,7 @@ function App() {
       
       <Provider store={store}>
       
-        <Stack.Navigator initialRouteName="CustomerScreen" >
+        <Stack.Navigator initialRouteName="Signup" >
           
           <Stack.Screen name='Main' component={Splash} />
           <Stack.Screen name='Signup' component={SignupScreen} />
@@ -47,8 +46,9 @@ function App() {
           <Stack.Screen name="AddCard" component={AddCardScreen} />
           <Stack.Screen name="CustomSidebar"  component={CustomSidebar}/>
           <Stack.Screen name="WishlistScreen" component={WishlistScreen}/>
+          <Stack.Screen name="VerificationCode" component={VerificationCode}/>
 
-          <Stack.Screen name='CustomerScreen' component={props => <CustomerScreen {...props} />} />
+          <Stack.Screen name='CustomerScreen' component={CustomerScreen} />
 
 
           <Stack.Screen name= 'ProductDetail' component={ProductDetail}/>

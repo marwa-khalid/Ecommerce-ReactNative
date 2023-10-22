@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from '../../features/BasketSlice';
 import Icon from "react-native-vector-icons/MaterialIcons";
 import axios from "axios";
+import { clearCart } from "../../features/BasketSlice";
 
 const CartScreen = ({ route,navigation }) => {
   
@@ -87,6 +88,7 @@ const CartScreen = ({ route,navigation }) => {
        }  } )
     .then((response) => {
         console.log(response.data);
+        dispatch(clearCart());
         navigation.navigate("OrderPlaced")
     })
     .catch((error) => console.log(error));

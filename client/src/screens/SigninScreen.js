@@ -47,12 +47,7 @@ const SignInPage = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Image
-        source={{
-          uri: "https://cdn.builder.io/api/v1/image/assets/TEMP/5916f075-6a09-4156-be40-dbd40c00ca9a?",
-        }}
-        style={styles.image1}
-      />
+      
       <Image
         source={require('../images/logoo.png')} 
         style={styles.image2}
@@ -128,7 +123,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#FFF",
     alignItems: "center",
-    backgroundColor: "white",
     height:"100%"
   },
   registerText: {

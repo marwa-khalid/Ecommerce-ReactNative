@@ -45,9 +45,21 @@ const RegisterPage = ({navigation}) => {
         };
     
         try{
-          const response = await axios.post("http://localhost:5002/api/users/register", customerData)
-           console.log(response)
-           navigation.navigate("Signin")
+          axios.post("http://localhost:5002/api/users/register", customerData)
+          .then((response)=>{
+            console.log(response)
+            axios.post(`http://localhost:5002/api/verification/${email}`)
+            .then((response)=>{
+              console.log(response)
+              navigation.navigate("VerificationCode",{token:response.data.token.token,expirationDate:response.data.token.expirationDate})
+            })
+            .catch((err)=>{
+              alert(err)
+            })      
+          })
+          .catch((err)=>{
+            alert(err);
+          });
         }catch(error){
         console.log(error.message)
         }
