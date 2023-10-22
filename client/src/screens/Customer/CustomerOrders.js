@@ -12,16 +12,15 @@ const CustomerOrder = ({navigation}) => {
   
     const fetchOrders = async () => {
       try {
-        const response = await axios.get("https://off-api.vercel.app/api/orders");
+        const response = await axios.get("http://localhost:5002/api/orders");
         const ordersData = response.data;
-        const userId = await AsyncStorage.getItem("userId");
   
-        // Filter orders based on userId
-        const filteredOrders = ordersData.filter(
-          (order) => order.customerId === userId
-        );
+        // // Filter orders based on userId
+        // const filteredOrders = ordersData.filter(
+        //   (order) => order.customerId === userId
+        // );
   
-        setOrders(filteredOrders);
+        setOrders(ordersData);
       } catch (error) {
         console.log("Error fetching orders:", error);
       }
@@ -29,9 +28,15 @@ const CustomerOrder = ({navigation}) => {
   
     const renderOrder = ({ item }) => (
       <View style={styles.orderItem}>
-        <Text style={styles.orderInfo}>Kitchen Name: {item.kitchenName}</Text>
-        <Text style={styles.orderInfo}>Date: {item.createdAt}</Text>
-        <Text style={styles.orderInfo}>Total: ${item.totalPrice}</Text>
+        <Text style={styles.orderInfo}>Brand Name: {item.brand}</Text>
+        <Text style={styles.orderInfo}>Placed at: {item.createdAt}</Text>
+        <Text style={styles.orderInfo}>Total: Rs{item.amount}</Text>
+        {item.products.map((product, index) => (
+          <View key={index}>
+            <Text style={styles.productInfo}>Product Title: {product.title}</Text>
+            <Text style={styles.productInfo}>Quantity: {product.quantity}</Text>
+          </View>
+        ))}
       
     {item.status === "Processing" && (
       <Text style={{ fontSize: 16, marginBottom: 8, color: "red" }}>

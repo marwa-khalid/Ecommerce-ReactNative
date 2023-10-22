@@ -1,7 +1,6 @@
-import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Sidebar from './src/screens/CustomDrawerComponent';
+
 import Splash from "./src/screens/Splash";
 import SignupScreen from "./src/screens/SignupScreen";
 import SigninScreen from "./src/screens/SigninScreen";
@@ -18,73 +17,52 @@ import ProductDetail from './src/screens/Customer/ProductDetail';
 import ForgotPasswordForm from "./src/screens/Reset/ForgotPasswordForm";
 import ForgotPasswordConfirmation from "./src/screens/Reset/ForgotPasswordConfirmation";
 import WishlistScreen from './src/screens/Customer/WishlistScreen';
-import CustomDrawerComponent from './src/screens/CustomDrawerComponent';
+import CustomSidebar from './src/screens/CustomSidebar';
+import OrdersScreen from './src/screens/Customer/OrdersScreen';
+
 import { store } from "./src/store";
 import { Provider } from "react-redux";
-import { Image } from 'react-native-elements';
-const Drawer = createDrawerNavigator();
+import './App.css';
+import CustomDrawerContent from './src/screens/CustomSidebar';
+
 const Stack = createStackNavigator();
-
-
-function DrawerNavigator() {
-  return (
-    <Drawer.Navigator
-    drawerContent={(props) => <CustomDrawerComponent {...props} />}
-  >
-    <Drawer.Screen name="Home" component={CustomerScreen} />
-    <Drawer.Screen name='WishlistScreen' component={WishlistScreen} />
-    <Drawer.Screen name="AddCard" component={AddCardScreen} />
-    
-    <Drawer.Screen 
-        name='ForgotPassword' 
-        component={ForgotPasswordForm} />
-        <Drawer.Screen name='ForgotPasswordConfirmation' component={ForgotPasswordConfirmation} />
-  </Drawer.Navigator>
-  );
-}
-
-function StackNavigator() {
-  return (
-    <Stack.Navigator initialRouteName="Main" screenOptions={{ headerShown: false }}>
-      <Stack.Screen name='BrandDetail' component={BrandDetail} />
-
-      
-      <Stack.Screen name='OrderPlaced' component={OrderPlaced} />
-      <Stack.Screen name='Main' component={Splash} />
-        <Stack.Screen name='Signup' component={SignupScreen} />
-        <Stack.Screen name='Signin' component={SigninScreen} />
-        <Stack.Screen name='Sidebar' component={Sidebar} />
-        <Stack.Screen name='EditProfile' component={EditProfile} />
-        
-        <Stack.Screen name="AddAddress" component={AddAddressScreen} />
-        <Stack.Screen name="AddCard" component={AddCardScreen} />
-
-        <Stack.Screen name='CustomerScreen' component={CustomerScreen} />
-        
-        <Stack.Screen name= 'ProductDetail' component={ProductDetail}/>
-        
-        <Stack.Screen name='Review' component={ReviewPage} />
-        <Stack.Screen name='CartScreen' component={CartScreen} />
-        <Stack.Screen name='CustomerOrder' component={CustomerOrder} />
-
-        <Stack.Screen 
-        name='ForgotPassword' 
-        component={ForgotPasswordForm} />
-        <Stack.Screen name='ForgotPasswordConfirmation' component={ForgotPasswordConfirmation} />
-  </Stack.Navigator>
-  );
-}
 
 function App() {
   return (
-    <NavigationContainer>
+
+    <NavigationContainer className="app-container">
+      
       <Provider store={store}>
-        <Stack.Navigator initialRouteName="DrawerNavigator" screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="DrawerNavigator" component={DrawerNavigator} />
-          <Stack.Screen name="StackNavigator" component={StackNavigator} />
+      
+        <Stack.Navigator initialRouteName="CustomerScreen" >
+          
+          <Stack.Screen name='Main' component={Splash} />
+          <Stack.Screen name='Signup' component={SignupScreen} />
+          <Stack.Screen name='Signin' component={SigninScreen} />
+          <Stack.Screen name='EditProfile' component={EditProfile} />
+          <Stack.Screen name='BrandDetail' component={BrandDetail} />
+          <Stack.Screen name='OrderPlaced' component={OrderPlaced} />
+          
+          <Stack.Screen name="AddAddress" component={AddAddressScreen} />
+          <Stack.Screen name="AddCard" component={AddCardScreen} />
+          <Stack.Screen name="CustomSidebar"  component={CustomSidebar}/>
+          <Stack.Screen name="WishlistScreen" component={WishlistScreen}/>
+
+          <Stack.Screen name='CustomerScreen' component={props => <CustomerScreen {...props} />} />
+
+
+          <Stack.Screen name= 'ProductDetail' component={ProductDetail}/>
+          
+          <Stack.Screen name='Review' component={ReviewPage} />
+          <Stack.Screen name='CartScreen' component={CartScreen} />
+          <Stack.Screen name='CustomerOrder' component={CustomerOrder} />
+
+          <Stack.Screen name='ForgotPassword'  component={ForgotPasswordForm} />
+          <Stack.Screen name='ForgotPasswordConfirmation' component={ForgotPasswordConfirmation} />
         </Stack.Navigator>
       </Provider>
     </NavigationContainer>
+    
   );
 }
 

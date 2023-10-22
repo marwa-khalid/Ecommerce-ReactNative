@@ -17,7 +17,7 @@ const ProductDetailScreen = ({ route, navigation }) => {
 
   const handleWishlist = async () => {
     try {
-      const response = await axios.post(`https://off-api.vercel.app/api/wishlist/${productId}`);
+      const response = await axios.post(`http://localhost:5002/api/wishlist/${productId}`);
       if (response.status === 200) {
         setIsWishlist(!isWishlist);
       }
@@ -29,7 +29,7 @@ const ProductDetailScreen = ({ route, navigation }) => {
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
-        const response = await axios.get(`https://off-api.vercel.app/api/products/${productId}`);
+        const response = await axios.get(`http://localhost:5002/api/products/${productId}`);
         setProduct(response.data);
       } catch (error) {
         console.error("Error fetching product details:", error);

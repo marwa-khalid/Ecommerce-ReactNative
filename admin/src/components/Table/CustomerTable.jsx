@@ -33,7 +33,7 @@ export default function BasicTable() {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch("https://off-api.vercel.app/api/users/"); 
+      const response = await fetch("http://localhost:5002/api/users/"); 
       const data = await response.json();
       setUserList(data);
     } catch (error) {
@@ -52,7 +52,7 @@ export default function BasicTable() {
   const handleApprove = async (userId) => {
     try {
       const status = "approved"
-      const response = await axios.put(`https://off-api.vercel.app/api/users/${userId}/approve`, { status });
+      const response = await axios.put(`http://localhost:5002/api/users/${userId}/approve`, { status });
       await fetchUsers();
       console.log("Status updated successfully");
     } catch (error) {
@@ -63,7 +63,7 @@ export default function BasicTable() {
   const handleDelete = async (userId) => {
     try {
       // Implement the logic to delete the user by making an HTTP DELETE request
-      const response = await axios.delete(`https://off-api.vercel.app/api/users/${userId}`);
+      const response = await axios.delete(`http://localhost:5002/api/users/${userId}`);
       console.log("User deleted successfully");
       // You can also update the user list in state to reflect the deletion
       // fetchUsers();

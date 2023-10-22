@@ -38,6 +38,6 @@ app.use("/api/reviews",reviewRoute);
 app.use(express.static("../client"));
 app.use('/uploads', express.static('uploads'));
 
-app.listen(5000, ()=>{
+app.listen(5002, ()=>{
     console.log("backened is running");
 });

@@ -25,7 +25,7 @@ const EditProfile = ({ route }) => {
   
     const fetchUserProfile = async () => {
       try {
-        const response = await axios.get(`http://https://off-api.vercel.app:5000/user/${id}`);
+        const response = await axios.get(`http://localhost:5002/user/${id}`);
         const {fullName, phoneNumber, email, image} = response.data;
         setName(fullName);
         setPhoneNumber(phoneNumber);
@@ -54,7 +54,7 @@ const EditProfile = ({ route }) => {
     
     const handleSaveProfile = async () => {
       try {
-        await axios.put(`https://off-api.vercel.app:5000/user/${id}`, {
+        await axios.put(`http://localhost:5002/user/${id}`, {
           fullName: fullName,
           phoneNumber:phoneNumber,
           email:email,

@@ -29,25 +29,17 @@ const SignInPage = ({navigation}) => {
     }
 
     try {
-      const response = await axios.post("https://off-api.vercel.app/api/users/login", data);
+      const response = await axios.post("http://localhost:5002/api/users/login", data);
       dispatch(login(response.data));
 
       await AsyncStorage.setItem("userId", response.data.user.id);
-      console.log(response.data.user.id)
+      console.log(response.data.user.id);
 
       navigation.navigate("CustomerScreen");
     }catch(error){
-        if (error.response) {
-          if (error.response.status === 401) {
-            if (error.response.data.message === "Invalid login credentials") {
-              window.alert( error.response.data.message); 
-            } else if (error.response.data.message === "Account send for approval") {
-              window.alert( error.response.data.message);  
-            }else if (error.response.data.message === "You are not registered as a customer") {
-              window.alert( error.response.data.message);  
-            }
-          }
-        } else {
+        if (error.response) 
+          window.alert( error.response.data.message); 
+        else {
           window.alert('Error:', error.message);
         }
       };

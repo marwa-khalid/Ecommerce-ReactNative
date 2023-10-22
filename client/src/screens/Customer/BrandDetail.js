@@ -21,7 +21,7 @@ const BrandDetailScreen = ({ route, navigation }) => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get(`https://off-api.vercel.app/api/products/`);
+      const response = await axios.get(`http://localhost:5002/api/products/`);
       setProducts(response.data);
     } catch (error) {
       console.log("Error fetching products:", error);

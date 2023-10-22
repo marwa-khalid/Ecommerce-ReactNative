@@ -31,7 +31,7 @@ const AddForm = ({ onClose }) => {
       formData.append("categories", selectedCategory);
       formData.append("brand", selectedBrand);
 
-      const response = await fetch("https://off-api.vercel.app/api/products", {
+      const response = await fetch("http://localhost:5002/api/products", {
         method: "POST",
         body: formData,
       });

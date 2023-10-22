@@ -25,14 +25,14 @@ export default function BasicTable() {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch("https://off-api.vercel.app/api/products"); // Change the URL as needed
+      const response = await fetch("http://localhost:5002/api/products"); // Change the URL as needed
       const data = await response.json();
 
       const productList = data.map((product) => ({
         title: product.title,
         price: product.price,
         description: product.description,
-        image: `https://off-api.vercel.app/${product.image}`,
+        image: `http://localhost:5002/${product.image}`,
         category: product.category,
         brand: product.brand
       }));

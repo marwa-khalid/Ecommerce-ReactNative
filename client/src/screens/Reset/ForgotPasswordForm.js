@@ -14,7 +14,7 @@ const ForgotPasswordForm = ({navigation,route}) => {
   const handleSubmit = () => {
     // Send API request to the backend server
     axios  
-      .post("https://off-api.vercel.app/api/reset", {email})
+      .post("http://localhost:5002/api/reset", {email})
       .then((response) => {
         setMessage(response.data.message);
         if(response.data.success){

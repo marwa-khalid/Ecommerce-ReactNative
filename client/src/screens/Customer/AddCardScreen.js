@@ -60,6 +60,7 @@ const AddCardScreen = ({ navigation }) => {
       <View style={styles.imageCard}>
           <Image
             source= {require('../../images/card.png')}
+            style={{width:"85%",height:"20vh", borderRadius:30}}
           />
       </View>
         <View style={styles.cardDetails}>

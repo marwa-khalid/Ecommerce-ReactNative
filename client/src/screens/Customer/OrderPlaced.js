@@ -8,10 +8,9 @@ export default function OrderPlaced({ navigation }) {
     navigation.navigate("CustomerScreen");
   };
 
-
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={require('../../images/confirm.png')}></Image>
+      <Image style={styles.image} source={require('../../images/confirm.png')}  ></Image>
       <Text style={styles.text}>Order Placed</Text>
       <Text style={styles.confirm}>Your order has been confirmed, we will send you confirmation email shortly.</Text>
       
@@ -31,6 +30,9 @@ const styles = StyleSheet.create({
   },
   image:{
     marginBottom:150,
+    width:"80%",
+    height:"10vh", 
+    borderRadius:30,
   },
   text: {
     fontSize: 30,

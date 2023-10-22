@@ -28,7 +28,7 @@ const ForgotPasswordConfirmation = ({navigation, route}) => {
       };
 
       await axios  
-      .post("https://off-api.vercel.app/api/reset/confirm", data)
+      .post("http://localhost:5002/api/reset/confirm", data)
       .then((response) => {
         console.log(response)
         setMessage(response.data.message);

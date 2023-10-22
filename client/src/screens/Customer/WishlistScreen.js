@@ -22,7 +22,7 @@ const WishlistScreen = ({ route, navigation }) => {
   const fetchProducts = async () => {
     try {
       // Fetch products of the selected brand using the brandId
-      const response = await axios.get(`https://off-api.vercel.app/api/wishlist/`);
+      const response = await axios.get(`http://localhost:5002/api/wishlist/`);
       setProducts(response.data);
     } catch (error) {
       console.log("Error fetching products:", error);

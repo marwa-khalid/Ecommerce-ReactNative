@@ -39,7 +39,7 @@ const ReviewsPage = ({ route }) => {
       console.log(customerName)
 
   
-      await axios.post("https://off-api.vercel.app/api/reviews", data);
+      await axios.post("http://localhost:5002/api/reviews", data);
       setReviewText('');
       setStarRating(0);
     } catch (error) {

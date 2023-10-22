@@ -3,13 +3,10 @@ import { View, Text, StyleSheet ,Image, TextInput, FlatList, TouchableOpacity} f
 import { useState,useEffect } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 import axios from 'axios';
-import Sidebar from '../CustomDrawerComponent';
-// import { createDrawerNavigator } from "@react-navigation/drawer";
-// import { NavigationContainer } from "@react-navigation/native";
+import Modal from '../CustomSidebar';
 
 const CustomerScreen = ({navigation}) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -25,15 +22,13 @@ const CustomerScreen = ({navigation}) => {
 
   const fetchProducts = async () => {
     try {
-      // Fetch products of the selected brand using the brandId
-      const response = await axios.get(`https://off-api.vercel.app/api/products/`);
+      const response = await axios.get(`http://localhost:5002/api/products/`);
       setProducts(response.data);
     } catch (error) {
       console.log("Error fetching products:", error);
     }
   };
   const handleProductPress = async (productId) => {
-    // Navigate to the product detail screen and pass the product ID as a parameter
     navigation.navigate("ProductDetail", { productId });
   };
 
@@ -51,7 +46,6 @@ const CustomerScreen = ({navigation}) => {
     navigation.openDrawer();
   };
   
-
   const renderProductCard = ({ item }) => (
     <TouchableOpacity style={styles.productCard} onPress={() => {handleProductPress(item._id)}}>
       <Image source={{ uri: `${item.image}`}} style={styles.productImage} />
@@ -62,12 +56,11 @@ const CustomerScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      {/* Top Row */}
       <View style={styles.topRow}>
-        <TouchableOpacity onPress={openDrawer}> 
+        <TouchableOpacity onPress={toggleSidebar}> 
           <FontAwesome name="bars" size={24} style={styles.icon} />
         </TouchableOpacity>
-        {isSidebarOpen && <Sidebar />}
+         <Modal isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         
         <Text>Hello! Welcome to OFF!</Text>
        <TouchableOpacity onPress={() => navigation.navigate('CartScreen')}>
