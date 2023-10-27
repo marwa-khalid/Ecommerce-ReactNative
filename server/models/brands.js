@@ -1,26 +1,21 @@
 const mongoose = require("mongoose");
 
 const BrandSchema = new mongoose.Schema({
-    name: {
+    brandName: {
         type: String,
         required: true,
-        unique: true
     },
 
     image: {
         type: String,
-        required: true
     },
 
-    rating: {
-        type: Number,
-        required: true,
-        
-    },
-
-    category: {
+    password: {
         type: String,
     },
+    email:{
+        type: String,
+    }
 
 },
 { timestamps: true}

@@ -74,7 +74,8 @@ const CartScreen = ({ route,navigation }) => {
         customerName: state.user.user.user.username, 
         products: state.cart.items.map(item => ({
           title: item.title,
-          quantity: item.quantity
+          quantity: item.quantity,
+          image: item.image
         })),
         status: "Processing",
         amount: state.cart.items.reduce(

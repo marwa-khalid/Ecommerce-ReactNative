@@ -29,4 +29,19 @@ router.get("/", async (req, res) => {
     }
   });
 
+ router.post('/', async (req, res) => {
+    const brandData = req.body; // Assuming the request body contains brand data
+
+    console.log(req.body)
+    const brand =  new Brand({
+      email: brandData.email,
+      password: brandData.password,
+      brandName: brandData.brandName,
+    });
+  
+    await brand.save();
+  
+    return res.status(201).json({ message: 'Brand added successfully'});
+  });
+  
 module.exports = router; 
