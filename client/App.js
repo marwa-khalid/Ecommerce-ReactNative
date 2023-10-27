@@ -33,7 +33,7 @@ function App() {
       
       <Provider store={store}>
       
-        <Stack.Navigator initialRouteName="Signup" >
+        <Stack.Navigator initialRouteName="Main" >
           
           <Stack.Screen name='Main' component={Splash} />
           <Stack.Screen name='Signup' component={SignupScreen} />

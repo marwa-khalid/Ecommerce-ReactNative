@@ -105,7 +105,7 @@ const CartScreen = ({ route,navigation }) => {
         <View>
           {cartItems.map((item) => (
             <View key={item._id} style={styles.cartItem}>
-              <Image source={{ uri: `${item.image}` }} style={styles.productImage} />
+              <Image source={{ uri: `http://localhost:5002/${item.image}` }} style={styles.productImage} />
               <View style={styles.itemInfo}>
                 <Text style={styles.itemName}>{item.title}</Text>
                 <Text style={styles.itemPrice}>Rs. {item.price}</Text>

@@ -55,7 +55,7 @@ const ProductDetailScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <ImageBackground source={{ uri: `${product.image}` }} style={styles.productImage}>
+      <ImageBackground source={{ uri: `http://localhost:5002/${product.image}` }} style={styles.productImage}>
         <TouchableOpacity style={styles.wishlistIcon} onPress={handleWishlist}>
           <FontAwesome name={isWishlist ? "heart" : "heart-o"} size={24} color="red" />
         </TouchableOpacity>

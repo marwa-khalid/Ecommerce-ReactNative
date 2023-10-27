@@ -15,10 +15,6 @@ const CustomerOrder = ({navigation}) => {
         const response = await axios.get("http://localhost:5002/api/orders");
         const ordersData = response.data;
   
-        // // Filter orders based on userId
-        // const filteredOrders = ordersData.filter(
-        //   (order) => order.customerId === userId
-        // );
   
         setOrders(ordersData);
       } catch (error) {

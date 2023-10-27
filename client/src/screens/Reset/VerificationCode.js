@@ -32,19 +32,20 @@ const VerificationCode = ({navigation,route}) => {
   const handleSubmit = ()=>{
     console.log(code)
     // submit the verification code to backend here
-    axios.post("http://localhost:5002/api/verification/confirm", {
-        token: emailToken,
-        expiration: expirationDate,
-        code: code.join('')
-    })
-    .then((response)=>{
-        window.alert(response.data.message);
+    // axios.post("http://localhost:5002/api/verification/confirm", {
+    //     token: emailToken,
+    //     expiration: expirationDate,
+    //     code: code.join('')
+    // })
+    // .then((response)=>{
+    //     window.alert(response.data.message);
         navigation.navigate('Signin');
-    })
-    .catch((err)=>{
-        window.alert(err.response.data.message);
-        console.log(err)
-    });
+    // })
+    // .catch((err)=>{
+    //   navigation.navigate('Signin');
+    //     window.alert(err.response.data.message);
+    //     console.log(err)
+    // });
   }
 
   return (
@@ -71,11 +72,11 @@ const VerificationCode = ({navigation,route}) => {
         ))}
       </View>
       <View style={styles.buttonContainer}>
-        <Button title="Send" color="#C79059" />
+        <Button title="Send" color="#C79059"  onPress={handleSubmit} />
       </View>
       <View style={styles.signupButtonContainer}>
         <Text style={styles.subtitle}>Don't have an account?</Text>
-        <Button title="Signup" color="#C79059" onPress={handleSubmit}/>
+        <Button title="Signup" color="#C79059"/>
       </View>
     </View>
   );
